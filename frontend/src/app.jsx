@@ -59,6 +59,25 @@ function App() {
   }, [weights]);
 
   const handleDeploy = () => {
+    // Since this is a buildless setup, we determine the environment via window.location
+    const isLocalhost = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
+    // Replace with your actual Render URL later
+    const API_BASE_URL = isLocalhost ? "http://127.0.0.1:8000" : "https://adept-backend-xyz.onrender.com";
+
+    // Example fetch call targeting the backend decision engine
+    fetch(`${API_BASE_URL}/v1/decision`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tx: { id: "tx_123", amount: 2600, merchant_name: "Apple Store", merchant_mcc: "5732", ip_country: "US", bin_country: "GB" },
+        features: { velocity_tx_per_hour: 5, device_first_seen_hours: 240, risk_composite_score: 0.12 },
+        strategy: { weights }
+      })
+    })
+    .then(res => res.json())
+    .then(data => console.log("Decision result:", data))
+    .catch(err => console.error("Deployment request failed:", err));
+
     setToast({ kind: 'queued', text: `Deployment queued to ${env} · ${dirty} change${dirty === 1 ? '' : 's'}` });
     setTimeout(() => setToast(null), 3500);
     setDirty(0);
