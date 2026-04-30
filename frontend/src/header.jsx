@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Icon, Pill, IconButton, Button } from './primitives';
-import { Icon as LucidIcon } from './icons';
 
 export const Header = ({ dirty, onDeploy, env, setEnv }) => {
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Icon, Pill } from './primitives';
+import { Card, Icon, Pill, Tag } from './primitives';
 
 // Audit & traceability panel: last 5 transactions with decision path + governance hash.
 

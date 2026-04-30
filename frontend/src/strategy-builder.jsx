@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Pill, IconButton, Button, Divider, Icon } from './primitives';
+import { Card, Pill, IconButton, Button, Divider, Icon, Switch } from './primitives';
 
 // Visual rule-chain: each rule is "IF [conditions] THEN [action]" with chained AND/OR logic.
 
