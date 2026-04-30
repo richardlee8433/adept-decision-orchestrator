@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1440" />
+<title>ADEPT · Strategy Orchestrator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+      },
+      colors: {
+        ink: {
+          950: '#0B0B0C',
+          900: '#111113',
+          850: '#16171A',
+          800: '#1A1A1D',
+          750: '#202024',
+          700: '#27272C',
+          600: '#34343A',
+          500: '#4A4A52',
+          400: '#6B6B75',
+          300: '#9A9AA3',
+          200: '#C8C8CE',
+          100: '#E6E6EA',
+        },
+        signal: {
+          red: '#EB001B',
+          orange: '#FF5F00',
+          amber: '#FFB020',
+          green: '#1FCB7A',
+          blue: '#3B82F6',
+        },
+      },
+      boxShadow: {
+        'card': '0 1px 0 0 rgba(255,255,255,0.04) inset, 0 8px 24px -12px rgba(0,0,0,0.6)',
+      },
+    },
+  },
+};
+</script>
+<style>
+  html, body { background: #0B0B0C; color: #E6E6EA; }
+  body { font-feature-settings: 'cv11', 'ss01', 'ss03'; }
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: #27272C; border-radius: 8px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+
+  /* Custom range sliders */
+  input[type="range"].adept-slider {
+    -webkit-appearance: none; appearance: none;
+    height: 6px; border-radius: 999px;
+    background: #27272C;
+    outline: none;
+  }
+  input[type="range"].adept-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 16px; height: 16px; border-radius: 999px;
+    background: #FFFFFF;
+    border: 2px solid #FF5F00;
+    box-shadow: 0 0 0 4px rgba(255,95,0,0.15);
+    cursor: grab;
+  }
+  input[type="range"].adept-slider::-moz-range-thumb {
+    width: 16px; height: 16px; border-radius: 999px;
+    background: #FFFFFF; border: 2px solid #FF5F00;
+    box-shadow: 0 0 0 4px rgba(255,95,0,0.15);
+    cursor: grab;
+  }
+
+  /* Switch */
+  .adept-switch { width: 32px; height: 18px; background: #27272C; border-radius: 999px; position: relative; transition: background .15s; cursor: pointer; }
+  .adept-switch[data-on="true"] { background: linear-gradient(90deg, #EB001B, #FF5F00); }
+  .adept-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 999px; background: #fff; transition: left .15s; }
+  .adept-switch[data-on="true"]::after { left: 16px; }
+
+  .pulse-dot { box-shadow: 0 0 0 0 rgba(31,203,122,0.7); animation: pulse-dot 2s infinite; }
+  @keyframes pulse-dot { 0% { box-shadow: 0 0 0 0 rgba(31,203,122,0.6);} 70% { box-shadow: 0 0 0 8px rgba(31,203,122,0);} 100% { box-shadow: 0 0 0 0 rgba(31,203,122,0);} }
+
+  .deploy-shine {
+    background: linear-gradient(95deg, #EB001B 0%, #FF5F00 100%);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.05) inset, 0 8px 24px -8px rgba(235,0,27,0.5);
+  }
+  .deploy-shine:hover { filter: brightness(1.08); }
+
+  .arrow-down { width: 1px; background: linear-gradient(to bottom, transparent, #34343A 30%, #34343A 70%, transparent); }
+
+  .stripe-bg {
+    background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 8px);
+  }
+
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+
+  /* tiny tag */
+  .kbd { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 2px 5px; border: 1px solid #27272C; border-radius: 4px; color: #9A9AA3; background: #111113; }
+</style>
+</head>
+<body class="font-sans antialiased">
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
+
+  <script type="text/babel" src="src/icons.jsx"></script>
+  <script type="text/babel" src="src/primitives.jsx"></script>
+  <script type="text/babel" src="src/header.jsx"></script>
+  <script type="text/babel" src="src/strategy-builder.jsx"></script>
+  <script type="text/babel" src="src/model-weighting.jsx"></script>
+  <script type="text/babel" src="src/latency-monitor.jsx"></script>
+  <script type="text/babel" src="src/audit-panel.jsx"></script>
+  <script type="text/babel" src="src/app.jsx"></script>
+</body>
+</html>
