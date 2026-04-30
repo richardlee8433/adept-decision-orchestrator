@@ -1,9 +1,17 @@
 import React from 'react';
-import { Icon } from './icons';
-
-export { Icon };
+import * as LucideIcons from 'lucide-react';
 
 // Small reusable primitives: Card, Pill, Switch, Tag, SectionHeader, Button.
+
+export const Icon = ({ name, size = 18, className, ...props }) => {
+  const pascalName = name
+    .split('-')
+    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+    .join('');
+  const Comp = LucideIcons[pascalName] || LucideIcons[name];
+  if (!Comp) return null;
+  return <Comp size={size} className={className} {...props} />;
+};
 
 export const Card = ({ children, className = '', as: As = 'div', ...rest }) => (
   <As
