@@ -1,4 +1,8 @@
-const Header = ({ dirty, onDeploy, env, setEnv }) => {
+import React, { useState } from 'react';
+import { Icon, Pill, IconButton, Button } from './primitives';
+import { Icon as LucidIcon } from './icons';
+
+export const Header = ({ dirty, onDeploy, env, setEnv }) => {
   return (
     <header className="h-14 border-b border-ink-700/70 bg-ink-900/95 backdrop-blur sticky top-0 z-30">
       <div className="h-full px-5 flex items-center justify-between">
@@ -84,4 +88,5 @@ const Header = ({ dirty, onDeploy, env, setEnv }) => {
   );
 };
 
-window.Header = Header;
+
+

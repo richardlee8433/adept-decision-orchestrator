@@ -1,6 +1,11 @@
-// Small reusable primitives: Card, Pill, Switch, Tag, SectionHeader.
+import React from 'react';
+import { Icon } from './icons';
 
-const Card = ({ children, className = '', as: As = 'div', ...rest }) => (
+export { Icon };
+
+// Small reusable primitives: Card, Pill, Switch, Tag, SectionHeader, Button.
+
+export const Card = ({ children, className = '', as: As = 'div', ...rest }) => (
   <As
     className={`bg-ink-900 border border-ink-700/70 rounded-xl shadow-card ${className}`}
     {...rest}
@@ -9,7 +14,7 @@ const Card = ({ children, className = '', as: As = 'div', ...rest }) => (
   </As>
 );
 
-const Pill = ({ children, tone = 'neutral', className = '' }) => {
+export const Pill = ({ children, tone = 'neutral', className = '' }) => {
   const tones = {
     neutral: 'bg-ink-800 border-ink-700 text-ink-200',
     green: 'bg-signal-green/10 border-signal-green/30 text-signal-green',
@@ -26,7 +31,7 @@ const Pill = ({ children, tone = 'neutral', className = '' }) => {
   );
 };
 
-const Switch = ({ on, onChange, label, sub }) => (
+export const Switch = ({ on, onChange, label, sub }) => (
   <label className="flex items-center gap-3 cursor-pointer select-none">
     <span
       className="adept-switch"
@@ -40,7 +45,7 @@ const Switch = ({ on, onChange, label, sub }) => (
   </label>
 );
 
-const Tag = ({ children, tone = 'neutral', mono = false, className = '' }) => {
+export const Tag = ({ children, tone = 'neutral', mono = false, className = '' }) => {
   const tones = {
     neutral: 'bg-ink-800 text-ink-200 border-ink-700',
     red: 'bg-signal-red/15 text-signal-red border-signal-red/30',
@@ -57,7 +62,7 @@ const Tag = ({ children, tone = 'neutral', mono = false, className = '' }) => {
   );
 };
 
-const SectionHeader = ({ eyebrow, title, sub, right }) => (
+export const SectionHeader = ({ eyebrow, title, sub, right }) => (
   <div className="flex items-end justify-between">
     <div>
       {eyebrow && (
@@ -72,7 +77,16 @@ const SectionHeader = ({ eyebrow, title, sub, right }) => (
   </div>
 );
 
-const IconButton = ({ icon, onClick, className = '', title }) => (
+export const Button = ({ children, className = '', ...rest }) => (
+  <button
+    className={`inline-flex items-center gap-1.5 px-2.5 h-8 rounded-md border border-ink-700 bg-ink-850 hover:bg-ink-800 text-[12px] text-ink-100 transition ${className}`}
+    {...rest}
+  >
+    {children}
+  </button>
+);
+
+export const IconButton = ({ icon, onClick, className = '', title }) => (
   <button
     onClick={onClick}
     title={title}
@@ -82,12 +96,8 @@ const IconButton = ({ icon, onClick, className = '', title }) => (
   </button>
 );
 
-const Divider = ({ className = '' }) => <div className={`h-px bg-ink-700/60 ${className}`} />;
+export const Divider = ({ className = '' }) => <div className={`h-px bg-ink-700/60 ${className}`} />;
 
-window.Card = Card;
-window.Pill = Pill;
 window.Switch = Switch;
 window.Tag = Tag;
 window.SectionHeader = SectionHeader;
-window.IconButton = IconButton;
-window.Divider = Divider;

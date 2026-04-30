@@ -1,7 +1,15 @@
+import React, { useState, useMemo } from 'react';
+import { Header } from './header';
+import { StrategyBuilder } from './strategy-builder';
+import { ModelWeighting } from './model-weighting';
+import { LatencyMonitor } from './latency-monitor';
+import { AuditPanel } from './audit-panel';
+import { Card, Icon, Pill, IconButton, Divider } from './primitives';
+
 // App shell: composes Header + main grid (Strategy + Right rail) + Audit panel.
 
 // Extract components from window for global scope reference
-const { Header, StrategyBuilder, ModelWeighting, LatencyMonitor, AuditPanel, Card, Icon, Pill, IconButton, Divider } = window;
+
 
 const initialRulesApp = [
   {
@@ -33,7 +41,7 @@ const initialRulesApp = [
   },
 ];
 
-function App() {
+export default function App() {
   const [rules, setRules] = React.useState(initialRulesApp);
   const [weights, setWeights] = React.useState({ base: 45, geo: 25, behavior: 30 });
   const [dirty, setDirty] = React.useState(3);
@@ -169,7 +177,8 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+
 
 
 

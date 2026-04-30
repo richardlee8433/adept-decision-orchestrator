@@ -1,6 +1,9 @@
+import React, { useMemo } from 'react';
+import { Card, Pill, IconButton, Icon, Divider } from './primitives';
+
 // Model weighting: three sliders that always sum to 100%, with projected accuracy.
 
-const ModelWeighting = ({ weights, setWeights, onDirty }) => {
+export const ModelWeighting = ({ weights, setWeights, onDirty }) => {
   const models = [
     { key: 'base',    label: 'Base Fraud Model',     sub: 'Gradient-boosted trees · v9.3', tone: 'red',    icon: 'binary',     latency: 0.000202 },
     { key: 'geo',     label: 'Geolocation AI',       sub: 'Spatial graph · v2.1',          tone: 'orange', icon: 'map-pin',    latency: 0.000173 },
@@ -166,5 +169,6 @@ const ModelWeighting = ({ weights, setWeights, onDirty }) => {
   );
 };
 
-window.ModelWeighting = ModelWeighting;
+
+
 

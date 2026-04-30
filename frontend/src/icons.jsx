@@ -1,3 +1,6 @@
+import React from 'react';
+import * as LucideIcons from 'lucide-react';
+
 // Thin wrappers around lucide for inline SVG icons.
 // Usage: <Icon name="zap" className="w-4 h-4" />
 const Icon = ({ name, className = 'w-4 h-4', strokeWidth = 1.75, style }) => {
@@ -21,4 +24,5 @@ function toPascal(name) {
     .join('');
 }
 
-window.Icon = Icon;
+
+

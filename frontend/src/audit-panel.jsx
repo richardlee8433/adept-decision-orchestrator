@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import { Card, Icon, Pill } from './primitives';
+
 // Audit & traceability panel: last 5 transactions with decision path + governance hash.
 
 const TRANSACTIONS = [
@@ -157,7 +160,7 @@ function makeFullHash(seed) {
   return s;
 }
 
-const AuditPanel = () => {
+export const AuditPanel = () => {
   const [openId, setOpenId] = React.useState(TRANSACTIONS[0].id);
   const [tab, setTab] = React.useState('trace');
 
@@ -218,4 +221,5 @@ const AuditPanel = () => {
   );
 };
 
-window.AuditPanel = AuditPanel;
+
+

@@ -1,3 +1,6 @@
+import React, { useState, useEffect } from 'react';
+import { Card, Divider, Icon } from './primitives';
+
 // Right sidebar: Latency budget breakdown + Accuracy/Latency trade-off chart + live throughput.
 
 const LatencyBar = ({ label, ms, budget, tone, sub }) => {
@@ -76,7 +79,7 @@ const Sparkline = ({ data, color = '#FF5F00' }) => {
   );
 };
 
-const LatencyMonitor = ({ weights, projectedAcc, projectedLat }) => {
+export const LatencyMonitor = ({ weights, projectedAcc, projectedLat }) => {
   const [tick, setTick] = React.useState(0);
   const [series, setSeries] = React.useState(() => Array.from({ length: 24 }, () => 12 + Math.random() * 5));
   React.useEffect(() => {
@@ -181,4 +184,5 @@ const LatencyMonitor = ({ weights, projectedAcc, projectedLat }) => {
   );
 };
 
-window.LatencyMonitor = LatencyMonitor;
+
+

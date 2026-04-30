@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import { Card, Pill, IconButton, Button, Divider, Icon } from './primitives';
+
 // Visual rule-chain: each rule is "IF [conditions] THEN [action]" with chained AND/OR logic.
 
 const CONDITION_TEMPLATES = [
@@ -190,7 +193,7 @@ const RuleCard = ({ rule, onToggle, onRemove, onAddCondition, onChangeAction, dr
   );
 };
 
-const StrategyBuilder = ({ rules, setRules, onRulesDirty }) => {
+export const StrategyBuilder = ({ rules, setRules, onRulesDirty }) => {
   const [filter, setFilter] = React.useState('all');
 
   const updateRules = (updater) => {
@@ -317,4 +320,5 @@ const StrategyBuilder = ({ rules, setRules, onRulesDirty }) => {
   );
 };
 
-window.StrategyBuilder = StrategyBuilder;
+
+
